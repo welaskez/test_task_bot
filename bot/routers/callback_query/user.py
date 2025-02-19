@@ -21,3 +21,9 @@ async def handle_services(callback: types.CallbackQuery):
 async def handle_prices(callback: types.CallbackQuery):
     await callback.message.edit_text(text=message_texts.PRICES, reply_markup=common.services_and_prices_kb)
     await callback.answer()
+
+
+@router.callback_query(F.data == "contact")
+async def handle_contacts(callback: types.CallbackQuery):
+    await callback.message.edit_text(text=message_texts.CONTACTS, reply_markup=common.to_main_kb)
+    await callback.answer()

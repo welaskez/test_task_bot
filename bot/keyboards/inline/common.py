@@ -16,3 +16,9 @@ services_and_prices_kb = InlineKeyboardMarkup(
         [InlineKeyboardButton(text="🔙 Назад", callback_data="main")],
     ]
 )
+
+to_main_kb = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [InlineKeyboardButton(text="🔙 Назад", callback_data="main")],
+    ]
+)
