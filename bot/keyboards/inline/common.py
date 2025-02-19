@@ -8,7 +8,7 @@ start_kb = InlineKeyboardMarkup(
     ]
 )
 
-services_kb = InlineKeyboardMarkup(
+services_and_prices_kb = InlineKeyboardMarkup(
     inline_keyboard=[
         [InlineKeyboardButton(text="🃏 Гадание на Таро", callback_data="tarot")],
         [InlineKeyboardButton(text="🔮 Консультация", callback_data="consultation")],
