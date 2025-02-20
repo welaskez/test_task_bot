@@ -33,3 +33,8 @@ async def handle_contacts(callback: types.CallbackQuery):
 @router.callback_query(F.data == "tarot")
 async def handle_tarot(callback: types.CallbackQuery, response_service: ResponseService):
     await response_service.handle_tarot(callback)
+
+
+@router.callback_query(F.data == "finance")
+async def handle_finance(callback: types.CallbackQuery, response_service: ResponseService):
+    await response_service.handle_finance(callback)
