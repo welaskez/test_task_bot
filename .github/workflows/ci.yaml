@@ -24,7 +24,9 @@ jobs:
 
       - name: installing poetry
         run: |
-          curl -sSL https://install.python-poetry.org | python3 -
+          pip install --user pipx
+          pipx ensurepath
+          pipx install poetry
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: installing deps
