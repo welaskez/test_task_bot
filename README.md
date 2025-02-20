@@ -1,3 +1,9 @@
+## Команды
+
+/start
+
+/help
+
 ## Инструкция по настройке
 
 ### 1. Настройка переменных окружения
@@ -31,4 +37,4 @@ docker exec -i postgres psql -U test_admin -d test_db < data.sql
 ```
 
 ### 4. Доступ к админке
-http://0.0.0.0:8080/admin
+http://localhost:8080/admin
