@@ -8,6 +8,9 @@ sqlalchemy = {extras = ["asyncio"], version = "^2.0.38"}
 alembic = "^1.14.1"
 asyncpg = "^0.30.0"
 pydantic-settings = "^2.7.1"
+sqladmin = "^0.20.1"
+fastapi = "^0.115.8"
+uvicorn = "^0.34.0"
 
 
 [tool.poetry.group.test.dependencies]
@@ -22,6 +25,11 @@ pre-commit = "^4.1.0"
 
 [tool.black]
 line-length = 110
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "function"
+asyncio_mode = "auto"
+pytonpath = "bot"
 
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
