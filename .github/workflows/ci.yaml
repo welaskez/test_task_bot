@@ -38,4 +38,5 @@ jobs:
           cat tests/.env.tests
 
       - name: run tests
+        env: tests/.env.tests
         run: pytest --maxfail=5 --disable-warnings -v
