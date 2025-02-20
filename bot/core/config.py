@@ -40,7 +40,7 @@ class CeleryConfig(BaseModel):
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=(".env", "tests/.env.test"),
+        env_file=(".env", "tests/.env.test", "tests/.env.test.example"),
         env_prefix="BOT_CONFIG__",
         env_nested_delimiter="__",
         case_sensitive=False,
