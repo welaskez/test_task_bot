@@ -30,6 +30,13 @@ class RedisConfig(BaseModel):
     port: int
     decode_responses: bool = True
 
+    def get_url(self) -> str:
+        return f"redis://{self.host}:{self.port}/"
+
+
+class CeleryConfig(BaseModel):
+    app_name: str = "tasks"
+
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
@@ -44,6 +51,7 @@ class Settings(BaseSettings):
     redis: RedisConfig
     db: DatabaseConfig
     logging: LoggingConfig = LoggingConfig()
+    celery: CeleryConfig = CeleryConfig()
 
 
 settings = Settings()
