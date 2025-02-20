@@ -1,6 +1,7 @@
 import message_texts
 from aiogram import F, Router, types
 from keyboards.inline import common
+from services.response import ResponseService
 
 router = Router(name=__name__)
 
@@ -27,3 +28,8 @@ async def handle_prices(callback: types.CallbackQuery):
 async def handle_contacts(callback: types.CallbackQuery):
     await callback.message.edit_text(text=message_texts.CONTACTS, reply_markup=common.to_main_kb)
     await callback.answer()
+
+
+@router.callback_query(F.data == "tarot")
+async def handle_tarot(callback: types.CallbackQuery, response_service: ResponseService):
+    await response_service.handle_tarot(callback)
