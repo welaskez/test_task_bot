@@ -27,9 +27,15 @@ jobs:
 
       - name: setup env
         run: |
-          echo "BOT_TOKEN=${{ secrets.BOT_TOKEN }}" >> $GITHUB_ENV
-          echo "REDIS_URL=${{ secrets.REDIS_URL }}" >> $GITHUB_ENV
-          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> $GITHUB_ENV
+          echo "BOT_CONFIG__BOT_TOKEN=${{ secrets.BOT_TOKEN }}" > tests/.env.tests
+          echo "BOT_CONFIG__DB__URL=${{ secrets.DB_URL }}" >> tests/.env.tests
+          echo "BOT_CONFIG__DB__ECHO=${{ secrets.ECHO }}" >> tests/.env.tests
+          echo "BOT_CONFIG__DB__ECHO_POOL=${{ secrets.ECHO_POOL }}" >> tests/.env.tests
+          echo "BOT_CONFIG__DB__POOL_SIZE=${{ secrets.POOL_SIZE }}" >> tests/.env.tests
+          echo "BOT_CONFIG__DB__MAX_OVERFLOW=${{ secrets.MAX_OVERFLOW }}" >> tests/.env.tests
+          echo "BOT_CONFIG__REDIS__HOST=${{ secrets.REDIS_HOST }}" >> tests/.env.tests
+          echo "BOT_CONFIG__REDIS__port=${{ secrets.REDIS_PORT }}" >> tests/.env.tests
+          cat tests/.env.tests
 
       - name: run tests
         run: pytest --maxfail=5 --disable-warnings -v
