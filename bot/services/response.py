@@ -2,6 +2,7 @@ from aiogram.types import CallbackQuery
 from core.enums import ResponseEnum
 from core.models import Response
 from crud.response import ResponseCRUD
+from keyboards.inline import builders
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from .base import BaseService
@@ -19,7 +20,7 @@ class ResponseService(BaseService[Response]):
     async def handle_response(self, callback: CallbackQuery, response_type: ResponseEnum) -> None:
         await callback.message.answer(text="🔮 Перемешиваю карты...")
         text = await self.get_random_response_text(response_type)
-        await callback.message.answer(text)
+        await callback.message.answer(text=text, reply_markup=builders.response_kb(response_type))
         await callback.answer()
 
     async def handle_tarot(self, callback: CallbackQuery) -> None:
