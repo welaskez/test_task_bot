@@ -25,5 +25,11 @@ jobs:
       - name: installing deps
         run: pip install -r requirements.txt
 
+      - name: setup env
+        run: |
+          echo "BOT_TOKEN=${{ secrets.BOT_TOKEN }}" >> $GITHUB_ENV
+          echo "REDIS_URL=${{ secrets.REDIS_URL }}" >> $GITHUB_ENV
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> $GITHUB_ENV
+
       - name: run tests
         run: pytest --maxfail=5 --disable-warnings -v
