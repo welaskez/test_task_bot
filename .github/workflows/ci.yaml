@@ -23,7 +23,9 @@ jobs:
           cache: 'poetry'
 
       - name: installing poetry
-        run: pip install poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: installing deps
         run: poetry install --no-interaction --no-root
