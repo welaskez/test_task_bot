@@ -9,6 +9,8 @@ services:
       context: .
       dockerfile: bot/Dockerfile
     container_name: bot
+    environment:
+      - SERVICE_TYPE=bot
     env_file:
       - bot/.env
     depends_on:
@@ -17,6 +19,28 @@ services:
       postgres:
         condition: service_healthy
     restart: unless-stopped
+    networks:
+      app:
+
+  admin_panel:
+    build:
+      context: .
+      dockerfile: bot/Dockerfile
+    container_name: admin_panel
+    env_file:
+      - bot/.env
+    environment:
+      - SERVICE_TYPE=admin_panel
+    depends_on:
+      bot:
+        condition: service_started
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    ports:
+      - "8080:8000"
     networks:
       app:
 
