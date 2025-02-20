@@ -1,9 +1,8 @@
 import asyncio
 import logging
 
-from aiogram import Bot, Dispatcher
-from aiogram.client.default import DefaultBotProperties
-from aiogram.enums import ChatType, ParseMode
+from aiogram import Dispatcher
+from aiogram.enums import ChatType
 from core.config import settings
 from core.models import session_pool
 from filters import ChatTypeFilter
@@ -14,16 +13,11 @@ from middlewares import (
     UserServiceMiddleware,
 )
 from routers import router
+from utils.bot import get_bot
 
 
 async def main():
-    bot = Bot(
-        token=settings.bot_token,
-        default=DefaultBotProperties(
-            link_preview_is_disabled=True,
-            parse_mode=ParseMode.HTML,
-        ),
-    )
+    bot = get_bot()
     dp = Dispatcher()
 
     await bot.delete_webhook(drop_pending_updates=True)
