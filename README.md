@@ -1,16 +1,19 @@
 ## Инструкция по настройке
 
 ### 1. Настройка переменных окружения
+
+Не забудьте задать переменную BOT_CONFIG__BOT_TOKEN
+
 ```bash
 mv bot/.env.example bot/.env
 ```
 
 ```bash
-mv tests/.env.tests.example tests/.env.tests
+mv tests/.env.test.example tests/.env.test
 ```
 
 ```bash
-mv pg_db.env.test pg_db.env
+mv pg_db.env.example pg_db.env
 ```
 
 ### 2. Сборка и запуск приложения
