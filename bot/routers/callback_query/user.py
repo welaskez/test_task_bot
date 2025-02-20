@@ -1,7 +1,9 @@
 import message_texts
 from aiogram import F, Router, types
+from aiogram.fsm.context import FSMContext
 from keyboards.inline import common
 from services.response import ResponseService
+from states.consultation import ConsultationState
 
 router = Router(name=__name__)
 
@@ -38,3 +40,9 @@ async def handle_tarot(callback: types.CallbackQuery, response_service: Response
 @router.callback_query(F.data == "finance")
 async def handle_finance(callback: types.CallbackQuery, response_service: ResponseService):
     await response_service.handle_finance(callback)
+
+
+@router.callback_query(F.data == "consultation")
+async def handle_consultation(callback: types.CallbackQuery, state: FSMContext):
+    await state.set_state(ConsultationState.name)
+    await callback.message.answer(text="Введите ваше имя")
