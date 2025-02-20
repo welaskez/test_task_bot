@@ -7,7 +7,7 @@ from aiogram.enums import ChatType, ParseMode
 from core.config import settings
 from core.models import session_pool
 from filters import ChatTypeFilter
-from middlewares import DatabaseMiddleware, UserServiceMiddleware
+from middlewares import DatabaseMiddleware, ResponseServiceMiddleware, UserServiceMiddleware
 from routers import router
 
 
@@ -26,6 +26,7 @@ async def main():
     dp.include_router(router)
     dp.update.middleware(DatabaseMiddleware(session_pool=session_pool))
     dp.update.middleware(UserServiceMiddleware())
+    dp.update.middleware(ResponseServiceMiddleware())
     dp.message.filter(ChatTypeFilter(chat_types=[ChatType.PRIVATE]))
     await dp.start_polling(bot)
 
