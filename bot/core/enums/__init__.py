@@ -1,3 +1,7 @@
-__all__ = ("ResponseEnum",)
+__all__ = (
+    "ResponseEnum",
+    "MailingStatus",
+)
 
+from .mailing import MailingStatus
 from .response import ResponseEnum

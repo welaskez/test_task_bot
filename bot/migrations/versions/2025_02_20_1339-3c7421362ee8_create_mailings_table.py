@@ -24,6 +24,7 @@ def upgrade() -> None:
         sa.Column("id", sa.UUID(), nullable=False),
         sa.Column("time", sa.DateTime(), nullable=False),
         sa.Column("text", sa.String(), nullable=False),
+        sa.Column("status", sa.Enum("PENDING", "SENT", name="mailingstatus"), nullable=False),
         sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.text("now()"), nullable=False),
         sa.Column("updated_at", sa.DateTime(timezone=True), server_default=sa.text("now()"), nullable=False),
         sa.PrimaryKeyConstraint("id", name=op.f("pk_mailings")),
