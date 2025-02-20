@@ -6,4 +6,5 @@ from .mixins import CreatedAtMixin, UpdatedAtMixin, UuidPkMixin
 
 class Consultation(UuidPkMixin, CreatedAtMixin, UpdatedAtMixin, Base):
     username: Mapped[str]
+    name: Mapped[str]
     time: Mapped[str]
